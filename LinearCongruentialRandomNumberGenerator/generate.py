@@ -45,21 +45,23 @@ def show_status(a, X0, c, m):
     else:
         print("=====> X0 is even")
 
+    print("=====> (a^(m-1)-1)MOD(m) === {}".format((a ** (m - 1) - 1) % m))
+
     if isprime(m):
-        print("=====> m is prime")
+        print("----=> m is prime")
     else:
-        print("=====> m is not prime")
+        print("----=> m is not prime")
 
 
-a = 11
+a = 3
 X0 = 1
 c = 0
-m = 2**16
+m = 7
 replicationNumber = 10
 res = gen_linear(a, X0, c, m, replicationNumber=None)
 
 
-print("=====> {} \n\n----=> len(result) = {}".format(res, len(res)))
-print("=====> m - len(result) = {} || m / len(result) = {}".format(m - len(res), m/len(res)))
+print("=====> {} \n----=> len(result) = {}".format(res, len(res)))
+print("----=> m - len(result) = {} || m / len(result) = {}".format(m - len(res), m/len(res)))
 
 show_status(a, X0, c, m)
