@@ -3,7 +3,12 @@ import scipy.stats
 
 def t(alpha, n):
     # if n samples pass n-1
-    return scipy.stats.t.ppf(1-(alpha/2), n)
+    return scipy.stats.t.ppf(1-(alpha), n)
+
+
+def norm(alpha):
+    # if n samples pass n-1
+    return scipy.stats.norm.ppf(1-(alpha))
 
 
 ls = [3.27,
@@ -25,5 +30,5 @@ print("standard deviation S:",
 print("standard error S / (R^.5):", se)
 
 
-level = t(0.05, len(ls)-1)
+level = t(0.025, len(ls)-1)
 print("Confidence interval:", mean - level * se, "to", mean + level * se)
