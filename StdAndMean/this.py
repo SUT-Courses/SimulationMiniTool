@@ -1,54 +1,29 @@
-ls = [1.88,
-      0.54,
-      1.90,
-      0.15,
-      0.02,
-      2.81,
-      1.50,
-      0.53,
-      2.62,
-      2.67,
-      3.53,
-      0.53,
-      1.80,
-      0.79,
-      0.21,
-      0.80,
-      0.26,
-      0.63,
-      0.36,
-      2.03,
-      1.42,
-      1.28,
-      0.82,
-      2.16,
-      0.05,
-      0.04,
-      1.49,
-      0.66,
-      2.03,
-      1.00,
-      0.39,
-      0.34,
-      0.01,
-      0.10,
-      1.10,
-      0.24,
-      0.26,
-      0.45,
-      0.17,
-      4.29,
-      0.80,
-      5.50,
-      4.91,
-      0.35,
-      0.36,
-      0.90,
-      1.03,
-      1.73,
-      0.38,
-      0.48]
+import scipy.stats
 
-print("mean", sum(ls) / len(ls))
-print("standard deviation",
+
+def t(alpha, n):
+    # if n samples pass n-1
+    return scipy.stats.t.ppf(1-(alpha/2), n)
+
+
+ls = [3.27,
+      16.25,
+      15.19,
+      7.24,
+      2.93]
+
+
+mean = sum(ls) / len(ls)
+se = (sum([(x - sum(ls) / len(ls)) **
+      2 for x in ls]) / (len(ls)-1)) ** 0.5 / (len(ls) ** 0.5)
+
+print("mean:", mean)
+
+print("standard deviation S:",
       (sum([(x - sum(ls) / len(ls)) ** 2 for x in ls]) / (len(ls)-1)) ** 0.5)
+
+print("standard error S / (R^.5):", se)
+
+
+level = t(0.05, len(ls)-1)
+print("Confidence interval:", mean - level * se, "to", mean + level * se)
